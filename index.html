@@ -52,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 64px;display:fl
 .btn-primary:hover{background:var(--navy-mid);transform:translateY(-2px)}
 .btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--navy);padding:13px 30px;border-radius:40px;font-size:13px;font-weight:500;letter-spacing:.06em;text-decoration:none;cursor:none;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
 .btn-outline:hover{background:var(--navy);color:var(--lemon);transform:translateY(-2px)}
-.hero-stats{display:flex;gap:32px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.hero-stats{display:flex;gap:32px;margin-top:0;padding-top:0;margin-bottom:32px;}
 .stat-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--navy);line-height:1}
 .stat-label{font-size:11px;color:var(--text-light);letter-spacing:.07em;text-transform:uppercase;margin-top:4px}
 .hero-right{position:relative;display:flex;align-items:center;justify-content:center;z-index:2}
@@ -95,7 +95,7 @@ section{padding:100px 80px}
 .about-fun{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .fun-pill{background:var(--lemon-soft);border:1px solid rgba(200,169,74,.3);padding:8px 16px;border-radius:30px;font-size:13px;color:var(--navy);transition:all .2s;cursor:default}
 .fun-pill:hover{background:var(--navy);color:var(--lemon)}
-.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-60px}
+.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-85px}
 .about-links-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px}
 .about-links-title em{font-style:italic;color:var(--gold)}
 .profile-links{display:flex;flex-direction:column;gap:12px}
@@ -326,20 +326,19 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <section id="hero">
   <div class="hero-left">
     <h1 class="hero-headline">Hi, I'm<em>Akanksha</em></h1>
-    <p class="hero-sub">A <span id="rollingTitle">Data Scientist</span></p>
+    <p class="hero-sub"><span id="rollingTitle">A Data Scientist</span></p>
     <p class="hero-desc">A <strong>Data Scientist</strong> with a <strong>Master's in Data Science</strong> and <strong>3+ years of experience</strong> building AI agents, pipelines, and dashboards that actually move the needle — across retail, marketing, e-commerce, automotive, and operations.</p>
-    <div class="hero-btns">
-      <a href="#experience" class="btn-primary">See My Work ↓</a>
-      <button onclick="toggleChat()" class="btn-outline" style="border-style:dashed;">
-        Why scroll when you can just ask?
-      </button>
-    </div>
     <div class="hero-stats">
       <div><div class="stat-num">3+</div><div class="stat-label">Yrs Experience</div></div>
       <div><div class="stat-num">4</div><div class="stat-label">Companies</div></div>
       <div><div class="stat-num">1</div><div class="stat-label">IEEE Paper</div></div>
       <div><div class="stat-num">30+</div><div class="stat-label">GitHub Repos</div></div>
     </div>
+    <div class="hero-btns">
+      <button onclick="toggleChat()" class="btn-primary">
+      Why scroll when you can just ask? 🤖
+      </button>
+  </div>
   </div>
   <div class="hero-right">
     <div class="hero-photo-wrap">
@@ -738,7 +737,7 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <script>
 
 // Rolling title animation
-const titles = ["Data Scientist", "Data Analyst", "BI Engineer", "ML Engineer"];
+const titles = ["A Data Scientist", "A Data Analyst", "A BI Engineer", "A ML Engineer"];
 let titleIndex = 0;
 const rollingEl = document.getElementById('rollingTitle');
 
