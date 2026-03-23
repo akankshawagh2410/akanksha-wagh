@@ -95,7 +95,7 @@ section{padding:100px 80px}
 .about-fun{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .fun-pill{background:var(--lemon-soft);border:1px solid rgba(200,169,74,.3);padding:8px 16px;border-radius:30px;font-size:13px;color:var(--navy);transition:all .2s;cursor:default}
 .fun-pill:hover{background:var(--navy);color:var(--lemon)}
-.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-20px}
+.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-60px}
 .about-links-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px}
 .about-links-title em{font-style:italic;color:var(--gold)}
 .profile-links{display:flex;flex-direction:column;gap:12px}
@@ -326,7 +326,7 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <section id="hero">
   <div class="hero-left">
     <h1 class="hero-headline">Hi, I'm<em>Akanksha</em></h1>
-    <p class="hero-sub">A <span id="rollingTitle">Data Scientist</span> with a Master's in Data Science.</p>
+    <p class="hero-sub">A <span id="rollingTitle">Data Scientist</span></p>
     <p class="hero-desc">A <strong>Data Scientist</strong> with a <strong>Master's in Data Science</strong> and <strong>3+ years of experience</strong> building AI agents, pipelines, and dashboards that actually move the needle — across retail, marketing, e-commerce, automotive, and operations.</p>
     <div class="hero-btns">
       <a href="#experience" class="btn-primary">See My Work ↓</a>
@@ -738,7 +738,7 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <script>
 
 // Rolling title animation
-const titles = ["A Data Scientist", "A Data Analyst", "A BI Engineer", "A ML Engineer"];
+const titles = ["Data Scientist", "Data Analyst", "BI Engineer", "ML Engineer"];
 let titleIndex = 0;
 const rollingEl = document.getElementById('rollingTitle');
 
