@@ -23,6 +23,8 @@ jobs:
           sed -i "s/ANTHROPIC_KEY/${API_KEY}/g" index.html
           echo "After:"
           grep -o "ANTHROPIC_KEY" index.html | wc -l
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
       - id: deployment
