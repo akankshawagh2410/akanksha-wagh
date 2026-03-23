@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="ak" content="ANTHROPIC_KEY">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akanksha Wagh — Data Scientist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -840,7 +839,7 @@ async function go(text){
       method:'POST',
       headers:{
         'Content-Type':'application/json',
-        'x-api-key': document.querySelector('meta[name="ak"]').content,
+        'x-api-key':'ANTHROPIC_KEY',
         'anthropic-version':'2023-06-01',
         'anthropic-dangerous-direct-browser-access':'true'
       },
