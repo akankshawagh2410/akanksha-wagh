@@ -788,7 +788,7 @@ EDUCATION: MS Data Science Stevens (Aug 2023–May 2025), courses: Applied ML, D
 
 EXPERIENCE: (1) Data Analyst Business & Marketing Compass Group USA Feb 2024–May 2025: AI agent for KPI reporting from Dynamics 365, customer segmentation+demand forecasting, sentiment analysis 3100+ records, multi-source integration fragmentation -60% reporting +40%, sell-through +30%. Tech: Python SQL Power BI Azure Synapse Scikit-Learn NLP. (2) ML Engineer Stevens May–Aug 2024: Attila GPT-4+LangChain IT chatbot human dependency -37% resolution +20% escalations -40%. Tech: Python PySpark LangChain GPT-4 MLflow. (3) Data Analyst Merchandising Marketing Nykaa Jun 2021–Dec 2022: RFM segmentation 1M+ records engagement +36% AOV +30%, A/B testing conversion +32%, 100M+ clickstream ROI +44%. Tech: Python SQL Snowflake dbt AWS S3 Power BI. (4) Data Analyst Tata Motors Jan–Jun 2023: Drishti 2.0 30K+ employees, 800K+ tickets manual effort -37% efficiency +21%. Tech: PySpark Python PostgreSQL Django REST Power BI.
 
-PROJECTS (10+ on GitHub): Soccer Highlights I3D-CNN IEEE published 95% accuracy PyTorch OpenCV GANs. Netflix Stock LSTM GRU RNN comparison GRU won. Grader Bot LangChain GPT-4o teacher grading. NYC Hiring ARIMA SARIMA R 18% improvement. Real Estate Tableau 3 dashboards. Campus Vendor BI Power BI Python TextBlob 164 records. NJ Transit OTP time series R. CPI Analysis Python EDA.
+PROJECTS: Soccer Highlights I3D-CNN IEEE published 95% accuracy PyTorch OpenCV GANs. Netflix Stock LSTM GRU RNN comparison GRU won. Grader Bot LangChain GPT-4o teacher grading. NYC Hiring ARIMA SARIMA R 18% improvement. Real Estate Tableau 3 dashboards. Campus Vendor BI Power BI Python TextBlob 164 records. NJ Transit OTP time series R. CPI Analysis Python EDA. 
 
 SKILLS: Python SQL R Tableau Power BI Excel AWS Azure GCP PySpark Snowflake dbt Scikit-Learn PyTorch TensorFlow LangChain GPT-4 MLflow NLP A/B Testing Statistical Modeling Feature Engineering Forecasting.
 
@@ -798,7 +798,9 @@ PUBLICATION: Self-Generated Soccer Highlights Using Inflated 3D CNN, IEEE 2024, 
 
 PERSONALITY: Curious, always chasing what's next. Hobbies: video editing, sports, blogging, food hunting, GenAI tinkering.
 
-If asked about hiring: "Yes! Actively looking for full-time Data Science and ML roles. Reach me at awagh2410@gmail.com or connect on LinkedIn!"`;
+If asked about hiring: "Yes! Actively looking for full-time Data Science and ML roles. Reach me at awagh2410@gmail.com or connect on LinkedIn!"
+
+If asked anything not covered above, say: "Hmm, I don't have that info — but feel free to email Akanksha directly at awagh2410@gmail.com!"`;
 
 let hist=[],open=false;
 
@@ -833,7 +835,7 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'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','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'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','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
     const d=await r.json();
     const reply=d.content?.[0]?.text||"Something went wrong — try again!";
     document.getElementById('typing')?.remove();
