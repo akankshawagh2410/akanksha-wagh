@@ -1,0 +1,13 @@
+name: Deploy Portfolio
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Inject API key
+        run: sed -i "s/ANTHROPIC_KEY/${{ secrets.ANTHROPIC_API_KEY }}/g" index.html
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v4
