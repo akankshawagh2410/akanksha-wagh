@@ -835,14 +835,18 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://akanksha-wagh-4u64u40qc-akankshawagh2410s-projects.vercel.app/api/chat',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})
+    const r = await fetch('https://akanksha-wagh-4u64u40qc-akankshawagh2410s-projects.vercel.app/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: CTX,
+        messages: hist
+      })
     });
-    const d=await r.json();
-    const reply=d.content?.[0]?.text||"Something went wrong — try again!";
+    const d = await r.json();
+    const reply = d.content?.[0]?.text || "Something went wrong — try again!";
     document.getElementById('typing')?.remove();
     addMsg(reply,'ai');
     hist.push({role:'assistant',content:reply});
