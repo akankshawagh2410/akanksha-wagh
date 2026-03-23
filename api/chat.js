@@ -1,9 +1,10 @@
 export default async function handler(req, res) {
-  // CORS FIX
+  // ✅ FORCE CORS HEADERS (always applied)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  // ✅ HANDLE PREFLIGHT (THIS IS THE FIX)
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -31,7 +32,7 @@ export default async function handler(req, res) {
     return res.status(200).json(data);
 
   } catch (e) {
-    console.error(e);
+    console.error("ERROR:", e);
     return res.status(500).json({ error: e.message });
   }
 }
