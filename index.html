@@ -95,7 +95,7 @@ section{padding:100px 80px}
 .about-fun{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .fun-pill{background:var(--lemon-soft);border:1px solid rgba(200,169,74,.3);padding:8px 16px;border-radius:30px;font-size:13px;color:var(--navy);transition:all .2s;cursor:default}
 .fun-pill:hover{background:var(--navy);color:var(--lemon)}
-.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-100px}
+.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-180px}
 .about-links-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px}
 .about-links-title em{font-style:italic;color:var(--gold)}
 .profile-links{display:flex;flex-direction:column;gap:12px}
@@ -224,21 +224,55 @@ section{padding:100px 80px}
 #contact .section-title{color:var(--lemon-soft)}
 #contact .section-title em{color:var(--lemon-dark)}
 .contact-sub{font-size:15px;color:rgba(251,237,176,.6);margin-top:12px;font-weight:300}
-.contact-big{font-family:'Playfair Display',serif;font-size:clamp(48px,8vw,110px);font-weight:900;line-height:1;letter-spacing:-.02em;color:rgba(251,237,176,.06);margin:36px 0;user-select:none}
-.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:50px 0 44px}
-.contact-card{background:rgba(255,255,255,.05);border:1px solid rgba(251,237,176,.1);border-radius:18px;padding:26px;text-align:left;transition:all .2s}
-.contact-card:hover{background:rgba(255,255,255,.09);transform:translateY(-4px)}
-.contact-card-icon{font-size:26px;margin-bottom:10px}
-.contact-card-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--lemon);margin-bottom:5px}
-.contact-card-val{font-size:14px;color:rgba(251,237,176,.85)}
-.contact-card a{color:rgba(251,237,176,.85);text-decoration:none;transition:color .2s}
-.contact-card a:hover{color:var(--lemon)}
-.follow-section{margin-top:50px}
-.follow-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:rgba(251,237,176,.45);margin-bottom:22px;font-style:italic}
-.social-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.social-link{display:inline-flex;align-items:center;gap:8px;background:rgba(251,237,176,.08);border:1px solid rgba(251,237,176,.18);color:var(--lemon);padding:12px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
-.social-link:hover{background:var(--lemon);color:var(--navy)}
-.social-link-sub{font-size:10px;opacity:.55;display:block}
+
+.contact-chat-card{
+  display:flex;align-items:flex-start;gap:20px;
+  background:rgba(251,237,176,.07);
+  border:1px solid rgba(251,237,176,.15);
+  border-radius:20px;padding:28px 32px;
+  max-width:620px;margin:48px auto 24px;
+  text-align:left;
+}
+.contact-chat-avatar{
+  width:48px;height:48px;border-radius:50%;flex-shrink:0;
+  background:rgba(251,237,176,.12);
+  border:1.5px solid rgba(251,237,176,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:14px;
+  font-weight:700;color:var(--lemon);letter-spacing:.02em;
+}
+.contact-chat-text p{
+  font-size:15px;color:var(--lemon);
+  margin:0 0 8px;line-height:1.7;font-weight:400;
+}
+.contact-chat-text span{
+  font-size:13px;color:rgba(251,237,176,.55);font-weight:300;
+}
+
+.contact-email-btn{
+  display:inline-block;
+  background:var(--lemon);color:var(--navy);
+  border-radius:40px;padding:15px 36px;
+  font-size:14px;font-weight:600;
+  text-decoration:none;letter-spacing:.04em;
+  transition:all .2s;margin-bottom:48px;
+}
+.contact-email-btn:hover{background:var(--lemon-dark);transform:translateY(-2px);}
+
+.contact-socials-row{border-top:1px solid rgba(251,237,176,.1);padding-top:36px;}
+.contact-socials-label{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(251,237,176,.35);margin-bottom:18px;font-family:'DM Sans',sans-serif;
+}
+.social-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.social-link{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(251,237,176,.08);border:1px solid rgba(251,237,176,.18);
+  color:var(--lemon);padding:11px 22px;border-radius:40px;
+  font-size:13px;font-weight:500;text-decoration:none;transition:all .2s;
+}
+.social-link:hover{background:var(--lemon);color:var(--navy);}
+.social-link-sub{font-size:10px;opacity:.55;display:block;}
 
 /* FOOTER */
 footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
@@ -648,41 +682,28 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-tag">Contact & Socials</div>
-  <h2 class="section-title">Let's build something <em>together.</em></h2>
-  <p class="contact-sub">Looking for full-time Data roles. If you're hiring or want to chat — I'm here!</p>
-  <div class="contact-big">HELLO.</div>
-  <div class="contact-cards">
-    <div class="contact-card">
-      <div class="contact-card-icon">📧</div>
-      <div class="contact-card-label">Email</div>
-      <div class="contact-card-val"><a href="mailto:awagh2410@gmail.com">awagh2410@gmail.com</a></div>
-    </div>
-    <div class="contact-card">
-      <div class="contact-card-icon">💼</div>
-      <div class="contact-card-label">LinkedIn</div>
-      <div class="contact-card-val"><a href="https://www.linkedin.com/in/akanksha-wagh-1963a722a/" target="_blank">akanksha-wagh</a></div>
-    </div>
-    <div class="contact-card">
-      <div class="contact-card-icon">📍</div>
-      <div class="contact-card-label">Location</div>
-      <div class="contact-card-val">United States · Open to Remote</div>
+  <h2 class="section-title" style="text-align:center;">Let's build something <em>together.</em></h2>
+  <p class="contact-sub">Actively looking for full-time Data Science & ML roles. If you're hiring or want to chat data — I'm here!</p>
+
+  <div class="contact-chat-card">
+    <div class="contact-chat-avatar">AW</div>
+    <div class="contact-chat-text">
+      <p>Hey! I'm currently open to Data Science & ML roles — full-time, hybrid or remote.</p>
+      <span>Drop me a line and I'll get back within 24 hours.</span>
     </div>
   </div>
-  <div class="follow-section">
-    <div class="follow-title">If you love tech, data & good vibes — come find me 👇</div>
+
+  <a href="mailto:awagh2410@gmail.com" class="contact-email-btn">
+    Say hello → awagh2410@gmail.com
+  </a>
+
+  <div class="contact-socials-row">
+    <p class="contact-socials-label">Or find me here</p>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/akanksha-wagh-1963a722a/" target="_blank" class="social-link">
-        Connect on LinkedIn<span class="social-link-sub">Let's network</span>
-      </a>
-      <a href="https://github.com/akankshawagh2410" target="_blank" class="social-link">
-        Follow on GitHub<span class="social-link-sub">See my code</span>
-      </a>
-      <a href="https://akankshawagh.medium.com/" target="_blank" class="social-link">
-        Subscribe on Medium<span class="social-link-sub">Tech + life stories</span>
-      </a>
-      <a href="https://www.instagram.com/akankshaa.wagh?igsh=ZzQ2NGxuaXhtZ3Ex&utm_source=qr" target="_blank" class="social-link">
-        Follow on Instagram<span class="social-link-sub">Only good vibes</span>
-      </a>
+      <a href="https://www.linkedin.com/in/akanksha-wagh-1963a722a/" target="_blank" class="social-link">Connect on LinkedIn<span class="social-link-sub">Let's network</span></a>
+      <a href="https://github.com/akankshawagh2410" target="_blank" class="social-link">Follow on GitHub<span class="social-link-sub">See my code</span></a>
+      <a href="https://akankshawagh.medium.com/" target="_blank" class="social-link">Subscribe on Medium<span class="social-link-sub">Tech + life stories</span></a>
+      <a href="https://www.instagram.com/akankshaa.wagh?igsh=ZzQ2NGxuaXhtZ3Ex&utm_source=qr" target="_blank" class="social-link">Follow on Instagram<span class="social-link-sub">Only good vibes</span></a>
     </div>
   </div>
 </section>
@@ -690,7 +711,7 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Akanksha Wagh.</div>
-  <div class="footer-copy">© 2025 · Data Scientist & GenAI Explorer · Built with ♡</div>
+  <div class="footer-copy">© 2025 · AW </div>
 </footer>
 
 <!-- AI CHAT -->
@@ -812,7 +833,7 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'ANTHROPIC_KEY','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
     const d=await r.json();
     const reply=d.content?.[0]?.text||"Something went wrong — try again!";
     document.getElementById('typing')?.remove();
