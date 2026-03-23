@@ -835,10 +835,10 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('https://akanksha-wagh-4u64u40qc-akankshawagh2410s-projects.vercel.app/api/chat',{
       method:'POST',
       headers:{
-        'Content-Type':'application/json',
+        'Content-Type':'application/json'},
         'x-api-key':'ANTHROPIC_KEY',
         'anthropic-version':'2023-06-01',
         'anthropic-dangerous-direct-browser-access':'true'
