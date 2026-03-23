@@ -835,7 +835,7 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r = await fetch('https://akanksha-wagh-au88-fgybrrvb0-akankshawagh2410s-projects.vercel.app/api/chat', {
+    const r = await fetch('https://akanksha-wagh-au88.vercel.app/api/chat', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
