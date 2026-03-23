@@ -95,7 +95,7 @@ section{padding:100px 80px}
 .about-fun{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .fun-pill{background:var(--lemon-soft);border:1px solid rgba(200,169,74,.3);padding:8px 16px;border-radius:30px;font-size:13px;color:var(--navy);transition:all .2s;cursor:default}
 .fun-pill:hover{background:var(--navy);color:var(--lemon)}
-.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-180px}
+.about-links-card{background:var(--lemon-pale);border:1px solid rgba(200,169,74,.25);border-radius:24px;padding:36px;box-shadow:0 6px 32px var(--shadow);margin-top:-200px}
 .about-links-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px}
 .about-links-title em{font-style:italic;color:var(--gold)}
 .profile-links{display:flex;flex-direction:column;gap:12px}
@@ -683,13 +683,13 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
 <section id="contact">
   <div class="section-tag">Contact & Socials</div>
   <h2 class="section-title" style="text-align:center;">Let's build something <em>together.</em></h2>
-  <p class="contact-sub">Actively looking for full-time Data Science & ML roles. If you're hiring or want to chat data — I'm here!</p>
+  <p class="contact-sub">If you're hiring or want to chat data — I'm here!</p>
 
   <div class="contact-chat-card">
     <div class="contact-chat-avatar">AW</div>
     <div class="contact-chat-text">
       <p>Hey! I'm currently open to Data Science & ML roles — full-time, hybrid or remote.</p>
-      <span>Drop me a line and I'll get back within 24 hours.</span>
+      <span>If you're hiring or want to chat, dop me a line and I'll get back within 24 hours.</span>
     </div>
   </div>
 
@@ -833,7 +833,7 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'ANTHROPIC_KEY','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'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','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
     const d=await r.json();
     const reply=d.content?.[0]?.text||"Something went wrong — try again!";
     document.getElementById('typing')?.remove();
