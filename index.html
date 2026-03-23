@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="ak" content="ANTHROPIC_KEY">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akanksha Wagh — Data Scientist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -835,7 +836,16 @@ async function go(text){
   hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':'ANTHROPIC_KEY','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': document.querySelector('meta[name="ak"]').content,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:hist})
+    });
     const d=await r.json();
     const reply=d.content?.[0]?.text||"Something went wrong — try again!";
     document.getElementById('typing')?.remove();
