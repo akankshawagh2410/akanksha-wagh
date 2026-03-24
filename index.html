@@ -753,7 +753,7 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
     <div class="chat-messages" id="chatMessages">
       <div class="msg ai">
         <div class="msg-av">AW</div>
-        <div class="msg-bubble">Hey there! I'm Akanksha. Ask me anything about my experience, projects, skills, or education! 🚀</div>
+        <div class="msg-bubble">Hey there! I'm Akanksha. Ask me anything about my experience, projects, skills, or education!</div>
       </div>
     </div>
     <div class="chat-suggestions" id="suggestions">
@@ -815,7 +815,7 @@ FORMAT RULES — always follow these:
 - Use short paragraphs, not walls of text 
 - Lead with the most impressive/interesting fact first 
 - End with something warm after every message or inviting like "Want to know more?"
-- If some is done with the question say something like 'It was nice talking to you. Have a great day ahead!'
+- If some is done with the conversation say something like 'Wanna know more?', if they reply no say, 'It was nice talking to you. Have a great day ahead!'
 - Never use bullet points inside the chat — write in natural flowing sentences
 - If someone says 'GUESS', they are visiting to play the game 2 Truths, 1 Lie. Be playful while playing.
 
@@ -1065,7 +1065,7 @@ function checkGuess(btn, guess, lie, idx){
     btn.style.background='#fca5a5';
     btn.style.borderColor='#dc2626';
     allBtns.forEach(b=>{ if(b.textContent.includes(lie)){ b.style.background='#4ade80'; b.style.borderColor='#16a34a'; }});
-    addMsg(`Not quite! 👀 The lie was "${lie}" — you'll get me next time!`, 'ai');
+    addMsg(`Not quite! The lie was "${lie}" — you'll get me next time!`, 'ai');
     showSideEye();
   }
 }
@@ -1121,7 +1121,7 @@ function showSideEye(){
       <div class="s-eye"><div class="s-eyeball"><div class="s-pupil"></div></div></div>
       <div class="s-eye"><div class="s-eyeball"><div class="s-pupil"></div></div></div>
     </div>
-    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#213767;">Nice try... 👀</div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#213767;">Nice try</div>
     <div style="font-size:14px;color:#213767;opacity:0.7;">Better luck next time!</div>
     <button onclick="this.parentElement.remove()" style="margin-top:8px;background:#213767;color:#fbedb0;border:none;padding:10px 24px;border-radius:30px;font-size:13px;cursor:pointer;">Close</button>
   `;
