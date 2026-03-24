@@ -336,6 +336,20 @@ footer{background:var(--navy-deep);padding:26px 80px;display:flex;justify-conten
   footer{padding:22px;flex-direction:column;text-align:center}
   .chat-window{width:calc(100vw - 40px);right:-10px}
 }
+/*2 Truths 1 lie*/
+#gameOverlay{display:none;position:fixed;inset:0;z-index:9000;pointer-events:none;}
+#confettiCanvas{position:fixed;inset:0;z-index:9001;pointer-events:none;}
+#sideEyeOverlay{display:none;position:fixed;inset:0;z-index:9001;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:rgba(33,55,103,0.15);backdrop-filter:blur(4px);}
+.side-eye-wrap{display:flex;gap:32px;}
+.s-eye{width:60px;height:88px;border-radius:50%;background:#213767;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.s-eyeball{width:30px;height:42px;border-radius:50%;background:white;position:relative;animation:sideeye 1.5s ease-in-out infinite;}
+@keyframes sideeye{0%,100%{transform:translateX(0)}25%{transform:translateX(-9px)}50%{transform:translateX(-11px)}75%{transform:translateX(-9px)}}
+.s-pupil{width:15px;height:20px;border-radius:50%;background:#0f1e36;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.s-pupil::after{content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:white;top:2px;left:2px;}
+.side-eye-text{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#213767;}
+.side-eye-sub{font-size:14px;color:#213767;opacity:0.7;}
+.side-eye-close{margin-top:16px;background:#213767;color:#fbedb0;border:none;padding:10px 24px;border-radius:30px;font-size:13px;cursor:pointer;pointer-events:all;}
+
 </style>
 </head>
 <body>
@@ -800,8 +814,10 @@ FORMAT RULES — always follow these:
 - Never use ** bold markdown ** — plain text only 
 - Use short paragraphs, not walls of text 
 - Lead with the most impressive/interesting fact first 
-- End with something warm or inviting like "Want to know more?" 
+- End with something warm after every message or inviting like "Want to know more?"
+- If some is done with the question say something like 'It was nice talking to you. Have a great day ahead!'
 - Never use bullet points inside the chat — write in natural flowing sentences
+- If someone says 'GUESS', they are visiting to play the game 2 Truths, 1 Lie. Be playful while playing.
 
 YOUR TONE:
 - Confident but friendly
@@ -875,15 +891,18 @@ PUBLICATION / RESEARCH PAPER / IEEE: I published a paper in IEEE in 2024 — Sel
 
 PERSONALITY: Curious, always chasing what's next. Hobbies: video editing, sports, blogging, food hunting, GenAI tinkering.
 
+PLAY / GAME / 2 TRUTHS 1 LIE / FUN / GUESS: Respond with exactly this text and nothing else: "TRIGGER_GAME"
+
 If asked about hiring or open to work: "Yes! I'm open for full-time Data Science and ML roles and I'm based in the United States. The best way to reach me is at awagh2410@gmail.com or connect with me on LinkedIn. I'd love to chat!"
 
 If asked anything not covered above, say: "Hmm, I don't have that info — but feel free to email Akanksha directly at awagh2410@gmail.com!"
+
+If asked anything related to resume, say: "Here's my resume — feel free to download it! <a href='Akanksha_Wagh_Resume.pdf' download='Akanksha_Wagh_Resume.pdf' style='color:var(--navy);font-weight:500;'>Download Resume PDF</a>."
 
 PRESET ANSWERS — when asked these specific questions, use these exact answers (you can slightly adapt the tone but keep the content):
 
 WHO IS AKANKSHA/ WHO ARE YOU/ TELL ME ABOUT YOURSELF / INTRODUCE YOURSELF:
 “I'm Akanksha — a data scientist with 3+ years of experience turning messy data into real decisions. I've worked across retail, marketing, e-commerce, automotive, and higher ed — building everything from AI agents and NLP pipelines to BI dashboards. I graduated with a Master's degree in Data Science from Stevens Institute of Technology in May 2025, and before that completed my Bachelor’s degree in Information Technology from Pune University where I was awarded Best Outgoing Student for the batch of 2023. I love building things that are both useful and a little creative — just like this AI assistant. Want to know more?”
-
 
 WHAT IS HER EXPERIENCE/ YOUR WORK EXPERIENCE/ HER EXPERIENCE/ WORK EXPERIENCE/ WORK/ EXPERIENCE/ HER WORK EXPERIENCE: 
 "I have over 3 years of experience working across data science, analytics, and data engineering with four companies — Tata Motors, Nykaa, Stevens Institute, and Compass Group USA. I’ve built models, dashboards, and data pipelines to solve real business problems. I’ve worked closely with marketing, product, and operations teams to turn complex data into clear, actionable strategies. My work spans customer behavior analysis, experimentation, and automation of decision-making processes. Want to know more about a specific role"
@@ -911,6 +930,9 @@ IS SHE OPEN TO WORK / HIRING:
 
 RESUME / CV / DOWNLOAD RESUME:
 "Here's my resume — feel free to download it! <a href='Akanksha_Wagh_Resume.pdf' download='Akanksha_Wagh_Resume.pdf' style='color:var(--navy);font-weight:500;'>Download Resume PDF</a>."
+
+PLAY / GAME / 2 TRUTHS 1 LIE / FUN / GUESS:
+Respond with exactly this text and nothing else: "TRIGGER_GAME"
 
 WHAT MAKES HER UNIQUE / WHY HIRE HER / WHAT SETS HER APART: 
 "I sit at the intersection of technical depth and business storytelling — I can build the model AND explain why it matters to a non-technical executive. I've worked across 4 industries in 3 years which means I adapt fast. And honestly, I built an AI version of myself for my portfolio — that's the kind of person I am!"`;
@@ -950,6 +972,11 @@ function sendMsg(){const i=document.getElementById('chatInput');const t=i.value.
 
 async function go(text){
   addMsg(text,'user');
+  if(text.toLowerCase().includes('play') || text.toLowerCase().includes('game') || text.toLowerCase().includes('2 truths') || text.toLowerCase().includes('truth')){
+    document.getElementById('suggestions').style.display='none';
+    startGame();
+    return;
+  }
   hist.push({role:'user',content:text});
   showTyping();
   try{
@@ -975,6 +1002,133 @@ async function go(text){
 }
 
 document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
+
+// ══ 2 TRUTHS 1 LIE GAME ══
+const TRUTHS = [
+  "I love editing videos.",
+  "I have lost my passport twice in a foreign country.",
+  "My last name means Tiger.",
+  "I professionally played football for 5 years.",
+  "Our dog once bit me.",
+  "I am great at cooking.",
+  "I am really good at stalking — the healthy kind.",
+  "I am the shortest in my family."
+];
+const LIES = [
+  "I don't know how to drive.",
+  "I love roller skating.",
+  "Swimming is my favorite activity to do.",
+  "My favorite cuisine is Chinese food."
+];
+
+let currentLie = '';
+let gameActive = false;
+
+function startGame(){
+  const shuffledTruths = TRUTHS.sort(()=>Math.random()-0.5).slice(0,2);
+  const lie = LIES[Math.floor(Math.random()*LIES.length)];
+  currentLie = lie;
+  const options = [...shuffledTruths, lie].sort(()=>Math.random()-0.5);
+  gameActive = true;
+
+  const gameMsg = `
+    <div style="margin-top:8px;">
+      <div style="font-weight:500;margin-bottom:12px;color:var(--navy);">2 Truths & 1 Lie — can you spot it? 👀</div>
+      ${options.map((opt,i)=>`
+        <button onclick="checkGuess(this,'${opt.replace(/'/g,"\\'")}','${lie.replace(/'/g,"\\'")}',${i})"
+          style="display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:8px;
+          border:1.5px solid rgba(33,55,103,0.2);border-radius:12px;background:var(--lemon-pale);
+          color:var(--navy);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;
+          transition:all 0.2s;"
+          onmouseover="this.style.background='var(--lemon)'"
+          onmouseout="this.style.background='var(--lemon-pale)'">
+          ${String.fromCharCode(65+i)}. ${opt}
+        </button>
+      `).join('')}
+    </div>
+  `;
+  addMsg(gameMsg, 'ai');
+}
+
+function checkGuess(btn, guess, lie, idx){
+  if(!gameActive) return;
+  gameActive = false;
+  const allBtns = btn.parentElement.querySelectorAll('button');
+  allBtns.forEach(b=>b.disabled=true);
+
+  if(guess === lie){
+    btn.style.background='#4ade80';
+    btn.style.borderColor='#16a34a';
+    addMsg(`You got it! 🎉 Yes, "${lie}" was the lie! You're good at this 😄`, 'ai');
+    launchConfetti();
+  } else {
+    btn.style.background='#fca5a5';
+    btn.style.borderColor='#dc2626';
+    allBtns.forEach(b=>{ if(b.textContent.includes(lie)){ b.style.background='#4ade80'; b.style.borderColor='#16a34a'; }});
+    addMsg(`Not quite! 👀 The lie was "${lie}" — you'll get me next time!`, 'ai');
+    showSideEye();
+  }
+}
+
+function launchConfetti(){
+  const canvas = document.createElement('canvas');
+  canvas.id='confettiCanvas';
+  canvas.style.cssText='position:fixed;inset:0;z-index:9001;pointer-events:none;';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = Array.from({length:150},()=>({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height - canvas.height,
+    w: Math.random()*10+5,
+    h: Math.random()*6+4,
+    color:['#213767','#fbedb0','#c8a94a','#2d4a82','#f5d96a'][Math.floor(Math.random()*5)],
+    rot: Math.random()*360,
+    vx: Math.random()*2-1,
+    vy: Math.random()*3+2,
+    vr: Math.random()*6-3
+  }));
+
+  let frame = 0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      ctx.save();
+      ctx.translate(p.x+p.w/2, p.y+p.h/2);
+      ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color;
+      ctx.beginPath();
+      if(Math.random()>0.5){ ctx.arc(0,0,p.w/2,0,Math.PI*2); }
+      else { ctx.rect(-p.w/2,-p.h/2,p.w,p.h); }
+      ctx.fill();
+      ctx.restore();
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+    });
+    frame++;
+    if(frame<180) requestAnimationFrame(draw);
+    else canvas.remove();
+  }
+  draw();
+}
+
+function showSideEye(){
+  const overlay = document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;z-index:9001;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;background:rgba(33,55,103,0.15);backdrop-filter:blur(4px);';
+  overlay.innerHTML=`
+    <div style="display:flex;gap:32px;">
+      <div class="s-eye"><div class="s-eyeball"><div class="s-pupil"></div></div></div>
+      <div class="s-eye"><div class="s-eyeball"><div class="s-pupil"></div></div></div>
+    </div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#213767;">Nice try... 👀</div>
+    <div style="font-size:14px;color:#213767;opacity:0.7;">Better luck next time!</div>
+    <button onclick="this.parentElement.remove()" style="margin-top:8px;background:#213767;color:#fbedb0;border:none;padding:10px 24px;border-radius:30px;font-size:13px;cursor:pointer;">Close</button>
+  `;
+  document.body.appendChild(overlay);
+  setTimeout(()=>overlay.remove(), 4000);
+}
+
 </script>
 </body>
 </html>
